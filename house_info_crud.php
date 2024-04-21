@@ -15,7 +15,7 @@
 
     // a function for adding a house data in the database
     function add_house(){
-        include "../connfigure.php";
+        include "./connfigure.php";
         
         $house_num = filter_input(INPUT_POST, "house_num", FILTER_SANITIZE_NUMBER_INT);
         $house_type = filter_input(INPUT_POST, "house_type", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -26,7 +26,7 @@
         $pic_name = basename($_FILES['file']['name']);
         $pic_temp = $_FILES["file"]["tmp_name"];
         $new_pic_name = uniqid() . "-{$house_type}-{$site_name}-{$pic_name}";
-        $path = "../pictures/" . $new_pic_name;
+        $path = "./pictures/" . $new_pic_name;
         $pic_type = pathinfo($path, PATHINFO_EXTENSION);
         $allow_type = array('jpg', 'png', 'jpeg', 'gif');
 
@@ -36,14 +36,14 @@
         if(in_array($pic_type, $allow_type)){
             if(move_uploaded_file($pic_temp, $path)){
                 $insert = mysqli_query($conn, $query);
-                $success = ($insert) ? header('location: ../admin_house_info.php?good_msg=The house has been ADDEDD SUCCESSFULLY') : error_log(mysqli_error($conn));
+                $success = ($insert) ? header('location: ./admin_house_info.php?good_msg=The house has been ADDEDD SUCCESSFULLY') : error_log(mysqli_error($conn));
             }
             else{
-                header('location: ../admin_house_info.php?bad_msg=There seems to be a problem uploading the image in the database');
+                header('location: ./admin_house_info.php?bad_msg=There seems to be a problem uploading the image in the database');
             }
         }
         else{
-            header('location: ../admin_house_info.php?bad_msg=Only "jpg", "png", "jpeg", and "gif" picture is allowed');
+            header('location: ./admin_house_info.php?bad_msg=Only "jpg", "png", "jpeg", and "gif" picture is allowed');
         }
 
         $conn -> close();
@@ -53,7 +53,7 @@
     function edit_house(){
         $id = $_POST["id"];
 
-        include "../connfigure.php";
+        include "./connfigure.php";
         
         $house_num = filter_input(INPUT_POST, "house_num", FILTER_SANITIZE_NUMBER_INT);
         $house_type = filter_input(INPUT_POST, "house_type", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -64,7 +64,7 @@
         $pic_name = basename($_FILES['file']['name']);
         $pic_temp = $_FILES["file"]["tmp_name"];
         $new_pic_name = uniqid() . "-{$house_type}-{$site_name}-{$pic_name}";
-        $path = "../pictures/" . $new_pic_name;
+        $path = "./pictures/" . $new_pic_name;
         $pic_type = pathinfo($path, PATHINFO_EXTENSION);
         $allow_type = array('jpg', 'png', 'jpeg', 'gif');
 
@@ -76,20 +76,20 @@
                 if(move_uploaded_file($pic_temp, $path)){
                     $query = "UPDATE `house_info_table` SET `house_num`='$house_num',`house_type`='$house_type',`house_site`='$site_name',`house_price`='$house_price',`monthly_price`='$house_monthly_price',`house_picture`='$pic_name' WHERE id = '$id'";
                     $insert = mysqli_query($conn, $query);
-                    $success = ($insert) ? header('location: ../admin_house_info.php?good_msg=The house has been UPDATED SUCCESSFULLY') : error_log(mysqli_error($conn));
+                    $success = ($insert) ? header('location: ./admin_house_info.php?good_msg=The house has been UPDATED SUCCESSFULLY') : error_log(mysqli_error($conn));
                 }
                 else{
-                    header('location: ../admin_house_info.php?bad_msg=There seems to be a problem updating the image in the database');
+                    header('location: ./admin_house_info.php?bad_msg=There seems to be a problem updating the image in the database');
                 }
             }
             else{
-                header('location: ../admin_house_info.php?bad_msg=hellow po');
+                header('location: ./admin_house_info.php?bad_msg=hellow po');
             }
         }
         else{
             $query = "UPDATE `house_info_table` SET `house_num`='$house_num',`house_type`='$house_type',`house_site`='$site_name',`house_price`='$house_price',`monthly_price`='$house_monthly_price',`house_picture`='$saved_picture_file' WHERE id = '$id'";
             $insert = mysqli_query($conn, $query);
-            $success = ($insert) ? header('location: ../admin_house_info.php?good_msg=The house has been UPDATED SUCCESSFULLY') : error_log(mysqli_error($conn)); 
+            $success = ($insert) ? header('location: ./admin_house_info.php?good_msg=The house has been UPDATED SUCCESSFULLY') : error_log(mysqli_error($conn)); 
         }   
 
         $conn -> close();
@@ -99,11 +99,11 @@
     function delete_house(){
         $id = $_POST["id"];
 
-        include "../connfigure.php";
+        include "./connfigure.php";
 
         $query = "DELETE FROM `house_info_table` WHERE id = $id";
         $delete = mysqli_query($conn, $query);
-        $success = ($delete)? header('location: ../admin_house_info.php?good_msg=The house data hase been DELETED SUCCESSFULLY') : error_log(mysqli_error($conn));
+        $success = ($delete)? header('location: ./admin_house_info.php?good_msg=The house data hase been DELETED SUCCESSFULLY') : error_log(mysqli_error($conn));
 
         $conn -> close();
     }
