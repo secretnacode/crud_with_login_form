@@ -15,7 +15,7 @@
             }
         }
         else{
-            header('location: ../admin_house_info.php?bad_msg=The house number is not valid');
+            header('location: ./admin_house_info.php?bad_msg=The house number is not valid');
         }
     }
 ?>
