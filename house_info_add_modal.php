@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../design.css">
+    <link rel="stylesheet" href="./design.css">
 
     <style>
         /* modal design */
@@ -180,7 +180,7 @@
             </div>
 
             <div class="forms">
-                <form action="./cruds_functions/house_info_crud.php" method="post" enctype="multipart/form-data">
+                <form action="./house_info_crud.php" method="post" enctype="multipart/form-data">
                     <div class="inputs">
                         
                         <div class="num">
