@@ -163,7 +163,7 @@
             </div>
 
             <div class="forms">
-                <form action="./cruds_functions/house_info_crud.php" method="post" enctype="multipart/form-data">
+                <form action="./house_info_crud.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?php echo $id; ?>">
 
                     <div class="add_houses_cancel">
